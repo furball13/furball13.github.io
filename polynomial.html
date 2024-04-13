@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head><title>Polynomial Generator</title>
+
+<style type="text/css">
+#result, #solution {
+	font-family: serif;
+	font-size: 150%;
+	padding: 1em;
+}
+var {
+	font-family: Georgia, serif;
+	font-style: italic;
+}
+#controls {
+	font-family: "Segoe UI", sans-serif;
+	font-size: 150%;
+	padding: 1em;
+}
+select, button {
+	font-size: 100%;
+	font-family: "Segoe UI", sans-serif;
+}
+#solution {
+	display: none;
+}
+#solution p {
+	display: inline-block;
+	background-color: #dfc;
+	border: 2px solid #6ba;
+	border-radius: 5px;
+	padding: 1em;
+}
+</style>
+
+<script type="text/javascript">
+
+function generate() {
+  const COEFF = 0, CONST = 1;
+  let factors = [];
+
+  let degree = parseInt(document.getElementById("degree").value);
+  let maxCoeff = parseInt(document.getElementById("maxCoeff").value);
+  let maxConst = parseInt(document.getElementById("maxConst").value);
+
+  // randomly generate factors (ax + b)
+  for (let i = 0; i < degree; i++) {
+    let ce = 0;
+    let cn = 0;
+    let factor = [];
+
+    // randomize a coefficient for the factor (a in (ax + b))
+    while (ce == 0) {
+      ce = Math.floor(Math.random() * maxCoeff + 1);
+    }
+    factor.push(ce);
+
+    // randomize a constant for the factor (b in (ax + b))
+    while (cn == 0) {
+      cn = Math.floor(Math.random() * ((maxConst * 2) + 1)) - maxConst;
+    }
+    factor.push(cn);
+    factors.push(factor);
+  }
+
+  // sort factors by smallest to largest root of the function (-b/a)
+  factors.sort(function(a,b) {
+    if (a[COEFF] === b[COEFF] && a[CONST] == b[CONST]) {
+      return 0;
+    } else {
+      return ((a[CONST]/a[COEFF]) > (b[CONST]/b[COEFF])) ? -1 : 1; // reverse order of ratios, since roots are additive inverses
+    }
+  });
+
+  let cmap = Math.pow(2,degree); // bitmap for filtering factors for all combinations in multiplication
+  let polyCoeffs = Array(degree+1); // coefficients in the expanded polynomial (ax^2 + bx + c)
+  polyCoeffs.fill(0); // initialize to 0
+
+  // iterate through all combinations of the bitmap (eg. 000 through 111 for degree 3 polynomial)
+  for (let i = 0; i < cmap; i++) {
+    let prod = 1;
+    let place = degree - i.toString(2).replace(/0/g,"").length;
+    let bitmask = i;
+    let idx = 0;
+
+    while (idx < degree) {
+      let term = (bitmask & 1) ? COEFF : CONST;
+      prod *= factors[idx][term];
+      bitmask >>= 1;
+      idx++;
+    }
+
+    polyCoeffs[place] = polyCoeffs[place] + prod;
+  }
+
+  let polynomial = "<p id=\"polynomial\">";
+  for (let i = 0; i <= degree; i++) {
+    if (polyCoeffs[i] != 0) {
+      polynomial += (polyCoeffs[i] < 0) ? " &minus; " : (i != 0) ? " + " : "";
+      polynomial += (Math.abs(polyCoeffs[i]) != 1 || i == degree) ? Math.abs(polyCoeffs[i]) : "";
+      polynomial += (i < degree) ? "<var>x</var>" : "";
+      polynomial += (degree - i > 1) ? "<sup>" + (degree - i) + "</sup>" : "";
+    }
+  }
+
+  let solution = "<p>";
+  let factorDegree = 1;
+  for (let fc = 0; fc < degree; fc++) {
+    if ( fc > 0 && factors[fc][COEFF] == factors[fc-1][COEFF] && factors[fc][CONST] == factors[fc-1][CONST]) {
+      factorDegree++;
+    } else {
+      solution += (factorDegree > 1) ? "<sup>" + factorDegree + "</sup>": "";
+      solution += "(";
+      solution += (Math.abs(factors[fc][COEFF]) > 1) ? Math.abs(factors[fc][COEFF]) : "";
+      solution += "<var>x</var>";
+      solution += (factors[fc][CONST] < 0) ? " &minus; " : (factors[fc][CONST] != 0) ? " + " : "";
+      solution += (factors[fc][CONST] != 0) ? Math.abs(factors[fc][CONST]) : "";
+      solution += ")";
+      factorDegree = 1;
+    }
+  }
+  solution += (factorDegree > 1) ? "<sup>" + factorDegree + "</sup>": "";
+
+  document.getElementById("result").innerHTML = polynomial + "</p><p><button onclick=\"showSolution()\">Show Solution</button></p>";
+  document.getElementById("solution").style.display = "none";
+  document.getElementById("solution").innerHTML = solution;
+}
+
+function showSolution()
+{
+	document.getElementById("solution").style.display = "block";
+}
+
+</script>
+
+</head>
+<body>
+<div id="controls">
+	<p>
+		<label for="degree">Degree:</label>
+		<select id="degree">
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+		</select>
+	</p>
+	<p>
+		<label for="maxCoeff">Maximum coefficient size:</label>
+		<select id="maxCoeff">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+	</p>
+	<p>
+		<label for="maxConst">Maximum constant size:</label>
+		<select id="maxConst">
+			<option value="4">&pm;4</option>
+			<option value="6">&pm;6</option>
+			<option value="8">&pm;8</option>
+			<option value="10">&pm;10</option>
+			<option value="12">&pm;12</option>
+		</select>
+	</p>
+	<p>
+		<button onclick="generate();">Generate</button>
+	</p>
+</div>
+<div id="result"><p>&nbsp;</p></div>
+<div id="solution"><p>&nbsp;</p></div>
+</body>
+</html>
