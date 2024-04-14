@@ -3,6 +3,8 @@
 <head>
   <title>Polynomial Generator</title>
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+ 
 
 <style type="text/css">
 #result, #solution {
@@ -27,10 +29,16 @@ select, button {
 }
 .slidecontainer label {
 	display: inline-block;
-	width: 25%;
+	width: 50%;
+	max-width: 14em;
+}
+.slidecontainer label span {
+	color: green;
+	float: right;
 }
 .slidecontainer input {
-	width: 25%;
+	width: 50%;
+	max-width: 24em;
 }
 #solution {
 	display: none;
@@ -178,11 +186,11 @@ function showSolution()
 function initSliders() {
   document.getElementById("degreeSlider").oninput = function() { document.getElementById("degreeValue").innerHTML = this.value; }
   document.getElementById("coeffSlider").oninput = function() { document.getElementById("coeffValue").innerHTML = this.value; }
-  document.getElementById("minConstSlider").oninput = updateSliders;
-  document.getElementById("maxConstSlider").oninput = updateSliders;
+  document.getElementById("minConstSlider").oninput = updateConstSliders;
+  document.getElementById("maxConstSlider").oninput = updateConstSliders;
 }
 
-function updateSliders() {
+function updateConstSliders() {
   let minSlider = document.getElementById("minConstSlider");
   let maxSlider = document.getElementById("maxConstSlider");
   let min = parseInt(minSlider.value);
