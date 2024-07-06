@@ -1,0 +1,197 @@
+/* CSS Reset from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+
+/** Page Layout **/
+body {
+	margin: 0;
+}
+
+main {
+	display: block;
+	padding-left: 1em;
+	padding: 1em;
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+        @media screen and (min-width: $break-points_tablet) {
+	        margin-left: 250px;
+		margin-top: 5em;
+		padding: 2em 4em;
+	}
+}
+
+.flex-container {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+/** Site Header */
+header {
+	background: $color-dark-1;
+	color: $color-light-1;
+	text-align: center;
+	height: 5em;
+	padding-top: 1em;
+	@media screen and (min-width: $break-points_tablet) {
+	        position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+	@media print {
+		background: $color-light-1;
+		color: $color-dark-1;
+	}
+	button.hamburger {
+		display: block;
+		background: none;
+		border: none;
+		color: $color-light-1;
+		font-size: 24px;
+		cursor: pointer;
+		padding: 10px;
+		float: left;
+		@media screen and (min-width: $break-points_tablet) {
+		        display: none;
+		}
+		@media print {
+			display: none;
+		}
+	}
+}
+
+/** Site Navigation **/
+nav {
+	background-color: $color-contrast-1;
+	padding-bottom: 1em;
+	@media screen and (min-width: $break-points_tablet) {
+	        display: block;
+		width: 250px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		margin-top: 5em;
+		padding-top: 1em;
+	}
+	@media print {
+		display: none;
+	}
+	ul {
+		list-style: none;
+		>li {
+			padding-top: 0.3em;
+		}
+	}
+	>ul {
+		>li {
+			padding-top: 1em;
+		}
+	}
+	.nav-category {
+	}
+	.nav-submenu {
+	  /* TODO - hide/show these with js */
+	}
+	a.nav-link {
+		color: $color_link;
+		&:visited {
+			color: $color_link;
+		}
+		&:hover {
+			color: $color_link_active;
+		}
+		&:focus {
+			color: $color_link_active;
+		}
+	}
+}
+
+/** Site Footer */
+footer {
+	border-top: 1px solid $color-dark-1;
+	width: 100%;
+	text-align: center;
+	padding-top: 1em;
+	font-size: 15px;
+	color: $color-dark-2;
+	@media print {
+		border: none;
+		font-size: 9pt;
+		display: none;
+	}
+}
+
+/** Site Colours */
+.color-light-1 {
+	background-color: $color-light-1;
+}
+.color-light-2 {
+	background-color: $color-light-2;
+}
+.color-dark-1 {
+	background-color: $color-dark-1;
+}
+.color-dark-2 {
+	background-color: $color-dark-2;
+}
+.color-contrast-1 {
+	background-color: $color-contrast-1;
+}
+.color-contrast-1 {
+	background-color: $color-contrast-1;
+}
+.color-link {
+	background-color: $color-link;
+}
+.color-link-active {
+	background-color: $color-link-active;
+}

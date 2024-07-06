@@ -1,0 +1,29 @@
+<nav>
+  <ul>
+    <li><a class="nav-link{% if page.url == site.baseurl and page.url == '/' %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
+  {% assign sorted_pages = site.posts | sort: 'date' %}
+  {% comment %}
+  {% assign sorted_pages = site.posts | sort: 'title' %}
+  {% endcomment %}
+  {% assign categories = sorted_pages | map: 'category' | uniq %}
+  {% for category in categories %}
+    {% if category != nil %}
+      <li><span class="nav-category">{{ category }}</span>
+        <ul class="nav-submenu">
+	{% for nav_post in sorted_pages %}
+	  {% if nav_post.category == category %}
+	  <li><a class="nav-link{% if page.url == nav_post.url %} active{% endif %}" href="{{ nav_post.url | relative_url }}">{{ nav_post.title }}</a></li>
+	  {% endif %}
+	{% endfor %}
+        </ul>
+      </li>
+    {% else %}
+      {% for nav_post in sorted_pages %}
+        {% if nav_post.category == nil %}
+	<li><a class="nav-link {% if page.url == nav_post.url %}active{% endif %}" href="{{ nav_post.url | relative_url }}">{{ nav_post.title }}</a></li>
+	{% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  </ul>
+</nav>

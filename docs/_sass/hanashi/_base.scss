@@ -1,0 +1,225 @@
+/** Headings */
+h1 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+h2 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+h3 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+h4 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+h5 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+h6 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+
+/** Basic styling */
+p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+}
+.visible {
+	display: block;
+}
+.hidden {
+	display: none;
+}
+.no-print {
+	@media print {
+		display: none;
+	}
+}
+
+
+/** Blockquotes */
+blockquote {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	color: $color-dark-2;
+	border-left: 4px solid $color-dark-2;
+	padding-left: 15px;
+	font-size: 18px;
+	letter-spacing: -1px;
+	font-style: italic;
+	> {
+		:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+pre {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	font-size: 15px;
+	border: 1px solid $color-dark-1;
+	border-radius: 3px;
+	background-color: $color-light-2;
+	padding: 8px 12px;
+	overflow-x: auto;
+	>code {
+		border: 0;
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+hr {
+	margin: 0;
+	padding: 0;
+}
+
+/** Lists */
+dl {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	dt {
+		font-weight: bold;
+	}
+	dd {
+		margin-left: 2em;
+	}
+}
+dd {
+	margin: 0;
+	padding: 0;
+}
+ol {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	margin-left: 30px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	margin-left: 30px;
+}
+
+/** Images */
+img {
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+/** Figures */
+figure {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+	>img {
+		display: block;
+	}
+}
+figcaption {
+	font-size: 14px;
+}
+
+/** Lists */
+li {
+	>ul {
+		margin-bottom: 0;
+	}
+	>ol {
+		margin-bottom: 0;
+	}
+}
+
+/** Links */
+a {
+	color: $color-link;
+	text-decoration: none;
+	&:visited {
+		color: $color-link;
+	}
+	&:hover {
+		color: $color-link-active;
+		text-decoration: underline;
+	}
+}
+
+/** Input Forms */
+.formControls {
+	margin-top: 1em;
+}
+button {
+	border: 1px solid $color-dark-1;
+	border-radius: 5px;
+	padding: 3px 5px;
+	background-color: $color-light-2;
+	color: $color-dark-1;
+}
+.slidecontainer {
+	label {
+		width: 50%;
+		max-width: 13em;
+		span {
+			color: $color-dark-2;
+			float: right;
+		}
+	}
+	input {
+		width: 40%;
+		max-width: 32em;
+	}
+}
+
+/** Icons */
+.svg-icon {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	fill: $color-dark-1;
+	padding-right: 5px;
+	vertical-align: text-top;
+}
+
+/** Tables */
+table {
+	margin-bottom: 30px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid $color-dark-1;
+	tr {
+		&:nth-child(even) {
+			background-color: $color-light-2;
+		}
+	}
+	th {
+		padding: 10px 15px;
+		background-color: $color-dark-2;
+		color: $color-light-1;
+		border: 1px solid $color-dark-1;
+	}
+	td {
+		padding: 10px 15px;
+		border: 1px solid $color-dark-1;
+	}
+}

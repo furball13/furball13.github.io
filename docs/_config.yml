@@ -17,19 +17,24 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-
-title: Hanashi
-email: admin@hanashi.ca
+title: Hanashi.ca
+email: joanna@hanashi.ca
 description: >- # this means to ignore newlines until "baseurl:"
-  This is an awesome description for my site. Really, it is.
+  Math Teacher & Computer Programmer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://hanashi.ca" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  furball13
 
+#Color settings
+
 # Build settings
-theme: minima
+#theme: jekyll-theme-time-machine
+#remote_theme: pages-themes/time-machine@v0.2.0
+sass:
+  style: compact # possible values: nested expanded compact compressed
 plugins:
-  - jekyll-feed
+#  - jekyll-feed
+#  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.

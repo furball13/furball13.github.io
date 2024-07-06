@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+/** Site Theme */
+$color-light-1: #fff7e8 !default;
+$color-light-2: #dfe0df !default;
+$color-dark-1: #523604 !default;
+$color-dark-2: #c08521 !default;
+$color-contrast-1: #f8c260 !default;
+$color-contrast-2: #edc38d !default;
+$color-link: #00796c !default;
+$color-link-active: #00473d !default;
+
+$font-family-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !default;
+$font-family-serif: 'Cambria Math', 'Times New Roman', serif !default;
+$font-family-variable: Georgia, serif !default;
+$base-font-size: 16px !default;
+$small-font-size: $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+$spacing-unit: 30px !default;
+
+$break-points_mobile: 480px !default;
+$break-points_tablet: 720px !default;
+$break-points_desktopS: 960px !default;
+$break-points_desktop: 1240px !default;
+$break-points_desktopHD: 1920px !default;
+
+
+// Width of the content area
+$content-width:    800px !default;
+
+$on-palm:          600px !default;
+$on-laptop:        800px !default;
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+// Import partials.
+@import
+  "hanashi/layout",
+  "hanashi/base",
+  "hanashi/math",
+  "hanashi/syntax-highlighting"
+;
+
+#color-swatches {
+	display: flex;
+	flex-flow: row wrap;
+	margin-bottom: 2em;
+
+	div {
+		height: 50px;
+		width: 50px;
+		border: 1px solid black;
+	}
+}

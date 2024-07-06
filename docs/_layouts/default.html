@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <base href="{{ site.baseurl }}">
+    <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/img/favicon.png">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/site.js"></script>
+  </head>
+
+  <body>
+    {% include header.html %}
+    {% include navigation.html %}
+    <main>
+    {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>
