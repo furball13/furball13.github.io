@@ -6,7 +6,7 @@ layout: default
 title: Joanna Farmer - Teacher & Programmer
 ---
 <article class="markdown-body">
-  {{ content }}
+  <h2>About Me</h2>
   <p></p>
 </article>
 
