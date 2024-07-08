@@ -22,7 +22,7 @@ email: joanna@hanashi.ca
 description: >- # this means to ignore newlines until "baseurl:"
   Math Teacher & Computer Programmer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://hanashi.ca" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.hanashi.ca" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  furball13
 
 #Color settings
