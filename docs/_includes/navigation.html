@@ -12,7 +12,7 @@
         <ul class="nav-submenu">
 	{% for nav_post in sorted_pages %}
 	  {% if nav_post.category == category %}
-	  <li><a class="nav-link{% if page.url == nav_post.url %} active{% endif %}" href="{{ nav_post.url | relative_url }}">{{ nav_post.title }}</a></li>
+	  <li><a class="nav-link{% if page.url == nav_post.url %} active{% endif %}" href="{{ nav_post.url | relative_url }}">{{ nav_post.date | date: "%b %-d" }}: {% endif %}{{ nav_post.title }}{% if nav_post.date %}</a></li>
 	  {% endif %}
 	{% endfor %}
         </ul>

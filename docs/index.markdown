@@ -8,5 +8,15 @@ title: Joanna Farmer - Teacher & Programmer
 <article class="markdown-body">
   <h2>About Me</h2>
   <p></p>
-</article>
+  <h2>Recent Posts</h2>
+  <dl>
+  {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
 
+  {% for nav_post in sorted_posts limit: 3 %}
+    {% if nav_post.layout != 'redirect' %}
+      <dt><a href="{{ nav_post.url | relative_url }}">{% if nav_post.date %}{{ nav_post.date | date: "%b %-d" }}: {% endif %}{{ nav_post.title }}</a></dt>
+      {% if nav_post.description %}<dd>{{ nav_post.description }}</dd>{% endif %}
+    {% endif %}
+  {% endfor %}
+  </dl>
+</article>
